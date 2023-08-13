@@ -1,0 +1,17 @@
+@screen lg {
+	 @keyframes marquee {
+		0% {
+			top: 0;
+		}
+		100% {
+			top: -233%;
+		}
+	}
+	.animate {
+		animation: marquee 20s linear infinite;
+	}
+}
+
+.animate:hover {
+	animation-play-state: paused;
+}
