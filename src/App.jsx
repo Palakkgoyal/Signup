@@ -1,4 +1,4 @@
-import './App.css'
+import { useState } from 'react'
 import frame1 from "./assets/frame1.png"
 import frame2 from "./assets/frame2.png"
 import frame3 from "./assets/frame3.png"
@@ -7,22 +7,22 @@ import logo from "./assets/logo.png"
 
 
 function App() {
+  const [images, setImages] = useState([frame3, frame1, frame2, frame3, frame1, frame2])
+
+  function handleClick() {
+      setImages(prevPositions => [...prevPositions.slice(1), prevPositions[0]]);
+  }
 
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div className='px-7 bg-[#F5F5F7] flex justify-evenly w-full min-h-screen border-2 text-red-800'>
         <div className='block w-1/2 h-screen overflow-hidden relative'>
-          <div className={`flex flex-col animate fixed h-[465%] overflow-visible ease-in-out duration-300 -translate-y-[65vh]`}
+          <div className={`flex flex-col animate fixed h-[465%] overflow-visible ease-in-out duration-300 -translate-y-[141vh]`}
           >
-            <div className='flex flex-col'>
-              <img src={frame1} alt="frame1" className='h-[75vh] mb-[2.5%]' />
-              <img src={frame2} alt="frame2" className='h-[75vh] mb-[2.5%]' />
-              <img src={frame3} alt="frame3" className='h-[75vh] mb-[2.5%]' />
-            </div>
-            <div className='flex flex-col'>
-              <img src={frame1} alt="frame1" className='h-[75vh] mb-[2.5%]' />
-              <img src={frame2} alt="frame2" className='h-[75vh] mb-[2.5%]' />
-              <img src={frame3} alt="frame3" className='h-[75vh] mb-[2.5%]' />
+            <div className='flex flex-col ease-in-out duration-300' onClick={handleClick}>
+              {images.map((img, idx) => (
+                <img src={img} className="h-[75vh] mb-[2.5%]" key={idx}/>
+              ))}
             </div>
           </div>
         </div>
